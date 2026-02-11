@@ -42,7 +42,49 @@ preVowelBase - h?
 
 
 ## Logic notes for OpenType Scripting  
+### Example words from creator
+Left word = orthography; Right word = typing scheme:  
+(H model no longer necessary!)  
+* seva - sehva  
+* aík - aiok / aIk  
+* yusim - yuhsihm  
+* sevguren - sehvguhrehn  
+* vam - vahm  
+* veim - veihm  
+* yusim - yuhsihm  
+* Ramin - Rahmihn  
+* fan - fahn  
+
+* leitse - leize  
+* zhishtap - jistap  
+* in - in  
+* maizhinashish - maijinasis  
+* waimaishil-iet - waimaisiliet / waimaisilhiet (ok may need the H for this one because the creator's written form indicates that both the i and e belong to the T and not the L. Ask the creator why it's written like this and if it's stylistic or necessary orthographically. [end of third line])  
+* miáchyizh - miaocyij  
+* du - du  
+* maispada - maispada  
+* yusim - yusim  
+* akyut - akyut  
+* ne - ne  
+* amám - amaom  
+* ru - ru  
+
+
+### Broken sequences  
+* cons + i/u + i/u + a/e + a/e (but I think this is very rare)  
+* letters which aren't wide enough to hold vowels a and e by default (and thus need a vowel-bearing form):
+  * for all a/e: ca da fa ga zha ka nga pa rta rra sha ta  
+  * for vowel sequences ia/ie: na  
+
 ### To Do:
-* vowels together must be treated as _only vowels_, up until there is a consonant prior. Detection logic for this may be challenging. Ideas:
+[x] - vowels together must be treated as _only vowels_, up until there is a consonant prior. Detection logic for this may be challenging. Ideas:
   * sub [@ConsAll] [@VowelAll]' by @VowelPostCons;
   * Then use standard sub rules for sequences starting with @VowelPostCons. 
+[x] - Consider restructuring logic so that the pre-cons-vowel-breaker [h] is unnecessary.  
+  * onset vowel = BARE VOWEL so that we don't need initial char detection rules.  
+    * This vowel must be a SPACING vowel, i.e. a "Simple" glyph type that creates cursor advancement.  
+  * bare vowel + vowel = sub vowel by pre-cons-vowel sub rules. No CHAR type vowels with the through-line.  
+  * consonant + vowel = sub vowel by "post-consonant-vowel". This vowel glyph may be only a ladder logic glyph and might not be seen. This post-cons-vowel glyph tells the next sub logic rules to operate accordingly.  
+  * post-cons-vowel + vowel = sub vowel by post-cons-vowel sub rules  
+[ ] - Make elongated consonants for a/e and ia/ie  
+[ ] - Adjust anchors for every consonant  

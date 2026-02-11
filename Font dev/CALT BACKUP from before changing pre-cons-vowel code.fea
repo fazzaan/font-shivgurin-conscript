@@ -1,0 +1,95 @@
+CALT BACKUP FROM BEFORE CHANGING THE PRE-CONSONANT-VOWEL CODE:
+
+feature calt {
+# Contextual Alternates
+
+#> feature
+#< feature
+
+# REPLACE VOWELS WITH CORRECT-POSITION-VOWEL {
+
+# Onset vowel should be advancing width.
+## Setting vowels to be advancing width by default is preferable, because detecting onset positionon is hard.
+## HOWEVER, (is there a "however"?)
+## (This is set in the Glyph properties panel - set glyph to "Simple".
+### TESTING ONSET REPLACEMENT METHOD:
+sub a' @ConsAll by ahPre;
+sub e' @ConsAll by eePre;
+sub i' @ConsAll by ihPre;
+sub u' @ConsAll by uuPre;
+### Replace accented onset vowels with dedicated glyph -- only here, because in other positions we want to retain the decomposed forms, otherwise we have to build independent glyphs for every in-word position.
+sub a' o' @ConsAll by ahPreAccented;
+sub e' o' @ConsAll by eePreAccented;
+sub i' o' @ConsAll by ihPreAccented;
+sub u' o' @ConsAll by uuPreAccented;
+
+# Vowel after Consonant should be non-advancing: replace vowel with vowelMark glyph variant (which is set as glyph type "Mark" and has correct anchors):
+## sub [@consAll] [@vowel]' by [@vowelMark];
+sub @ConsAll @a' by ahMark;
+sub @ConsAll @e' by eeMark;
+sub @ConsAll @i' by ihMark;
+sub @ConsAll @u' by uuMark;
+
+# ANY Vowels after A or E should be "standalone" chars:
+#sub n [a e] [a e i u]' by [ahChar iiChar ihChar uuChar];
+sub [@a @e] @a' by ahChar;
+sub [@a @e] @e' by eeChar;
+# Account for accent mark (@Accent):
+sub @ConsAll [@a @e] @Accent [a e]' by [ahChar eeChar];
+# Small bug here - a and e alternating forever results in Char subs, which is right, but adding accent mark with o breaks it after 2.
+## Realistically, that's never going to happen in script usage.
+
+# Vowels i or u after ANY two vowels should be CHAR vowels:
+sub [ @a @e @i @u ] [ @i @u ] @i' by ihChar;
+sub [ @a @e @i @u ] [ @i @u ] @u' by uuChar;
+
+# Vowels i or u after u or i MARKS should be Mark vowels:
+## case where ihMark or uuMark is followed by u or i -- should still be Mark vowel:
+sub uuMark @i' by ihMark;
+sub ihMark @u' by uuMark;
+
+# Vowels a or e after i or u should be Mark vowels:
+## case where 
+sub [ ihMark uuMark ] @a' by ahMark;
+sub [ ihMark uuMark ] @e' by eeMark;
+
+# Vowels i or u after themselves should be Char vowels:
+## case where iMark or uMark is followed by i or u:
+sub @i @i' by ihChar;
+sub @u @u' by uuChar;
+
+# Vowels i or u after a or e MARK should be CHAR vowels:
+## case where aMark or eMark is followed by i or u:
+sub [ @a @e ] @i' by ihChar;
+sub [ @a @e ] @u' by uuChar;
+
+### AFTER ALL CHAR VOWELS A VOWEL SHOULD BE A CHAR VOWEL
+
+sub [ ahChar eeChar ihChar uuChar ] @a' by ahChar;
+sub [ ahChar eeChar ihChar uuChar ] @e' by eeChar;
+sub [ ahChar eeChar ihChar uuChar ] @i' by ihChar;
+sub [ ahChar eeChar ihChar uuChar ] @u' by uuChar;
+## Account for Accent marker:
+sub [ ahChar eeChar ihChar uuChar ] @Accent @a' by ahChar;
+sub [ ahChar eeChar ihChar uuChar ] @Accent @e' by eeChar;
+sub [ ahChar eeChar ihChar uuChar ] @Accent @i' by ihChar;
+sub [ ahChar eeChar ihChar uuChar ] @Accent @u' by uuChar;
+
+# REPLACE [VOWEL+H+CONS] BY EMPTY
+## TODO: replace @u with all @vowels
+##            replace n with all @consonants
+sub @VowelsAll @SeprtVowel' @ConsAll by empty;
+sub @VowelsAll @Accent @SeprtVowel' @ConsAll by empty;
+
+} calt;
+
+
+
+
+
+
+
+
+
+
+
