@@ -75,6 +75,7 @@ Left word = orthography; Right word = typing scheme:
 * letters which aren't wide enough to hold vowels a and e by default (and thus need a vowel-bearing form):
   * for all a/e: ca da fa ga zha ka nga pa rta rra sha ta  
   * for vowel sequences ia/ie: na  
+  * caWide daWide faWide gaWide zhaWide kaWide ngaWide paWide rtaWide rraWide shaWide taWide naWide  
 
 ### To Do:
 [x] - vowels together must be treated as _only vowels_, up until there is a consonant prior. Detection logic for this may be challenging. Ideas:
