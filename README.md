@@ -71,11 +71,24 @@ Left word = orthography; Right word = typing scheme:
 
 
 ### Broken sequences  
-* cons + i/u + i/u + a/e + a/e (but I think this is very rare)  
-* letters which aren't wide enough to hold vowels a and e by default (and thus need a vowel-bearing form):
+[ ] - cons + i/u + i/u + a/e + a/e (but I think this is very rare)  
+[x] - letters which aren't wide enough to hold vowels a and e by default (and thus need a vowel-bearing form):
   * for all a/e: ca da fa ga zha ka nga pa rta rra sha ta  
   * for vowel sequences ia/ie: na  
   * caWide daWide faWide gaWide zhaWide kaWide ngaWide paWide rtaWide rraWide shaWide taWide naWide  
+  * Actually, most of them are fine with just a bit of widening and anchor positioning. Glyphs which definitely need a dedicated wide glyph form:
+    * shaWide 
+[ ] - u-mark's accent should be on top when in certain positions  
+
+
+### Shape classes
+#### Bar from mid-right
+baBase faBase maBase naBase paBase shaBase vaBase waBase yaBase tsaBase  
+#### Hook from base to mid-right
+caBase daBase gaBase zhaBase kaBase laBase ngaBase rtaBase rraBase  
+#### Diagonal from base to mid-right
+taBase  
+
 
 ### To Do:
 [x] - vowels together must be treated as _only vowels_, up until there is a consonant prior. Detection logic for this may be challenging. Ideas:
@@ -87,5 +100,8 @@ Left word = orthography; Right word = typing scheme:
   * bare vowel + vowel = sub vowel by pre-cons-vowel sub rules. No CHAR type vowels with the through-line.  
   * consonant + vowel = sub vowel by "post-consonant-vowel". This vowel glyph may be only a ladder logic glyph and might not be seen. This post-cons-vowel glyph tells the next sub logic rules to operate accordingly.  
   * post-cons-vowel + vowel = sub vowel by post-cons-vowel sub rules  
-[ ] - Make elongated consonants for a/e and ia/ie  
-[ ] - Adjust anchors for every consonant  
+[x] - Make elongated consonants for a/e and ia/ie (only needed for sha)  
+[x] - Adjust anchors for every consonant  
+[ ] - Adjust vowel lsb and rsb  
+[ ] - Fix vowel anchoring for i then u - u then i works though.  
+[ ] - Determine how to shunt pre-cons vowels backwards. Complicated. Conditions: 1) only if the consonant is IN a word, not at the start. 2) vowels may need to attach to horizontal anchors for mark-on-mark placement. 3) vowels will need to have zero-adv-width in these cases.
