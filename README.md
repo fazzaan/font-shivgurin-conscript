@@ -72,6 +72,7 @@ Left word = orthography; Right word = typing scheme:
 
 ### Broken sequences  
 [ ] - cons + i/u + i/u + a/e + a/e (but I think this is very rare)  
+[ ] - cons + i/u + accent + a/e -- I think this ISN'T rare, so needs to be fixed. Not sure why it doesn't already work. Current sub output sequence is cons + vowelPost + [o] + [a] so presumably the cons + vowelPost + [a] sequence exists and doesn't have the @Accent handler.  
 [x] - letters which aren't wide enough to hold vowels a and e by default (and thus need a vowel-bearing form):
   * for all a/e: ca da fa ga zha ka nga pa rta rra sha ta  
   * for vowel sequences ia/ie: na  
@@ -102,6 +103,10 @@ taBase
   * post-cons-vowel + vowel = sub vowel by post-cons-vowel sub rules  
 [x] - Make elongated consonants for a/e and ia/ie (only needed for sha)  
 [x] - Adjust anchors for every consonant  
-[ ] - Adjust vowel lsb and rsb  
-[ ] - Fix vowel anchoring for i then u - u then i works though.  
-[ ] - Determine how to shunt pre-cons vowels backwards. Complicated. Conditions: 1) only if the consonant is IN a word, not at the start. 2) vowels may need to attach to horizontal anchors for mark-on-mark placement. 3) vowels will need to have zero-adv-width in these cases.
+[x] - Adjust vowel lsb and rsb  
+[x] - Fix vowel anchoring for i then u - u then i works though.  
+[ ] - Determine how to shunt pre-cons vowels backwards. Complicated. Conditions: 1) only if the consonant is IN a word, not at the start. 2) vowels may need to attach to horizontal anchors for mark-on-mark placement. 3) vowels will need to have zero-adv-width in these cases.  
+[ ] - cons + i/u + accent + a/e  
+[ ] - **Kerning!!!**  
+[ ] - Punctuation & symbols  
+[ ] - sub wide version of ta maybe  
