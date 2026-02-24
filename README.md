@@ -1,4 +1,4 @@
-
+# Shivgurin Con-script font  
 
 
 ### Glyph names list for font design app
@@ -102,11 +102,15 @@ taBase
   * consonant + vowel = sub vowel by "post-consonant-vowel". This vowel glyph may be only a ladder logic glyph and might not be seen. This post-cons-vowel glyph tells the next sub logic rules to operate accordingly.  
   * post-cons-vowel + vowel = sub vowel by post-cons-vowel sub rules  
 [x] - Make elongated consonants for a/e and ia/ie (only needed for sha)  
-[x] - Adjust anchors for every consonant  
-[x] - Adjust vowel lsb and rsb  
-[x] - Fix vowel anchoring for i then u - u then i works though.  
+[x] - Adjust anchors for every consonant (v0.300)  
+[x] - Adjust vowel lsb and rsb (v0.301)  
+[x] - Fix vowel anchoring for i then u - u then i works though. (v0.301)  
 [ ] - Determine how to shunt pre-cons vowels backwards. Complicated. Conditions: 1) only if the consonant is IN a word, not at the start. 2) vowels may need to attach to horizontal anchors for mark-on-mark placement. 3) vowels will need to have zero-adv-width in these cases.  
-[ ] - cons + i/u + accent + a/e  
-[ ] - **Kerning!!!**  
+[ ] - cons + i/u + accent + a/e (I think this is rare, but should probably make it work)  
 [ ] - Punctuation & symbols  
+[ ] - Numbers  
 [ ] - sub wide version of ta maybe  
+[ ] - **Kerning!!!** (after punctuation and numbers are done)  
+[ ] - fix ng sub rules - maybe ng never, or maybe nhg  
+[ ] - update n component of ng digraph ligature to look the same as n  
+
